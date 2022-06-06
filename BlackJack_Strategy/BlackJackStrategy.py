@@ -1,9 +1,12 @@
-x = 0
-while x < 4:
+def get_input():
     ut = int(input("Your Total; "))
+
+    if ut < 2 or ut > 20:
+        print("Invalid Value")
+        get_input()
+
     cardType = input("Is total hard, soft or pair; ")
     dealerUpcard = int(input("Dealers Upcard; "))
-
 
     def hard_totals():
         if ut < 9:
@@ -24,9 +27,10 @@ while x < 4:
                 print("Stand")
             else:
                 print("Hit")
+        elif ut in range(17, 21):
+            print("Always stand")
         else:
             print("Hit")
-
 
     def soft_totals():
         if ut in range(13, 15):
@@ -60,7 +64,6 @@ while x < 4:
             print("Stand")
         else:
             print("Hit")
-
 
     def pair_totals():
         if ut == 4 or ut == 6:
@@ -115,11 +118,14 @@ while x < 4:
         elif ut == 22:
             print("Always Split and Double if allowed")
 
-
     if cardType == "hard":
         hard_totals()
     if cardType == "soft":
         soft_totals()
     if cardType == "pair":
         pair_totals()
-    x += 1
+
+
+get_input()
+
+
